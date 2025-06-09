@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday 🎉</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      flex-direction: column;
+    }
+
+    .container {
+      text-align: center;
+      background: #fff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      position: relative;
+      max-width: 600px;
+      width: 90%;
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid #ff6f91;
+      box-shadow: 0 0 15px rgba(255, 111, 145, 0.5);
+      margin-bottom: 15px;
+    }
+
+    .birthday-img {
+      width: 80px;
+      margin-top: 15px;
+      animation: float 2s ease-in-out infinite alternate;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #ff4081;
+      margin-bottom: 10px;
+      min-height: 2.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid #ff4081;
+      animation: typing 4s steps(40, end), blink 0.75s step-end infinite;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #444;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      margin: 12px 0;
+    }
+
+    .btn {
+      background: #ff4081;
+      color: #fff;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 20px;
+      box-shadow: 0 4px 12px rgba(255, 64, 129, 0.4);
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #ff4081;
+      animation: fall linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-15px); }
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- PROFILE PICTURE -->
+    <img src="img1.jpg" alt="Birthday Person" class="profile-pic" />
+
+    <!-- TYPING HEADING -->
+    <h1 id="typing-heading">Happy Birthday, [Name]! 🎉</h1>
+
+    <!-- BIRTHDAY WISHES -->
+    <p class="wish">You bring joy to everyone around you.</p>
+    <p class="wish">May your birthday be as special as you are. 🎂</p>
+    <p class="wish">Keep shining and growing. The world is lucky to have you! 🌟</p>
+    <p class="wish">Here’s to love, laughter, and a lifetime of memories. 🥳</p>
+
+    <button class="btn" onclick="revealNextWish()">Next Wish</button>
+
+    <!-- BIRTHDAY IMAGE (CAKE) -->
+    <img src="https://cdn-icons-png.flaticon.com/512/3531/3531858.png" class="birthday-img" alt="Cake" />
+  </div>
+
+  <script>
+    // Confetti generator
+    for (let i = 0; i < 100; i++) {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.top = -Math.random() * 100 + 'px';
+      confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+      confetti.style.animationDuration = (Math.random() * 2 + 3) + 's';
+      document.body.appendChild(confetti);
+    }
+
+    // Wish reveal logic
+    const wishes = document.querySelectorAll('.wish');
+    let index = 0;
+    wishes[index].style.opacity = 1;
+
+    function revealNextWish() {
+      if (index + 1 < wishes.length) {
+        index++;
+        wishes[index].style.opacity = 1;
+      } else {
+        alert("🎈 That's all the wishes! Hope they made you smile 😄");
+      }
+    }
+  </script>
+
+</body>
+</html>
